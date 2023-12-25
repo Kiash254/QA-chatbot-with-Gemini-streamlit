@@ -5,8 +5,9 @@ This project is a simple interactive chatbot built with Streamlit and the Gemini
 ## Setup
 
 1. Clone this repository.
+git clone https://github.com/Kiash254/QA-chatbot-with-Gemini-streamlit.git
 2. Install the required dependencies with `pip install -r requirements.txt`.
-3. Create a `.env` file in the root directory and add your Google API key like so: `Google_api_key=YOUR_API_KEY`.
+3. Create a `.env` file in the root directory and add your Google API key like so: `Google_api_key=YOUR_API_KEY`. get the API key from https://makersuite.google.com/
 4. Run the Streamlit app with `streamlit run app.py`.
 
 ## Usage
