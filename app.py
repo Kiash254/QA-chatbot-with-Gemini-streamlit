@@ -14,8 +14,8 @@ genai.configure(api_key=os.getenv("Google_api_key"))
 model=genai.GenerativeModel('gemini-pro')
 #function to load gemini model and response
 def load_gemini_model(question):
-    response=model.generate_response(question)  # Corrected here
-    return response.text  # Corrected here
+    response=model.generate_content(question)  
+    return response.text  
 
 #setting up the Streamlit application
 
