@@ -13,11 +13,40 @@ from PIL import Image
 #use configure to set the api key
 genai.configure(api_key=os.getenv("Google_api_key"))
 
-model=genai.GenerativeModel('gemini-pro-vision')
+# Set up the model
+generation_config = {
+  "temperature": 0.4,
+  "top_p": 1,
+  "top_k": 32,
+  "max_output_tokens": 4096,
+}
+
+safety_settings = [
+  {
+    "category": "HARM_CATEGORY_HARASSMENT",
+    "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+  },
+  {
+    "category": "HARM_CATEGORY_HATE_SPEECH",
+    "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+  },
+  {
+    "category": "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+    "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+  },
+  {
+    "category": "HARM_CATEGORY_DANGEROUS_CONTENT",
+    "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+  },
+]
+
+model=genai.GenerativeModel('gemini-pro-vision', generation_config=generation_config, safety_settings=safety_settings)
 
 def  get_gemini_response(input,image,prompt):
-    resesponse=model.generate_content([input,image[0],prompt])
-    return resesponse.text
+    prompt_parts = [input, image[0], prompt]
+    response=model.generate_content(prompt_parts)
+    return response.text
+
 def input_image_details(upload_file):
     if upload_file is not None:
         #read the file into bytes
@@ -32,6 +61,7 @@ def input_image_details(upload_file):
         return image_parts
     else:
         raise FileNotFoundError("File not found")
+
 #streamlit set page config
 st.set_page_config(page_title="MultiLanguage Invoice Extractor",page_icon="🤖",layout="centered",initial_sidebar_state="auto")
 
@@ -50,7 +80,7 @@ if upload_file is not None:
     
 submit=st.button("Tell me about the invoice")
 
-input_prompt="This is an invoice for a purchase of a laptop. The invoice is for a laptop that was purchased on 12/12/2020. The invoice is for a laptop that was purchased on 12/12/2020. The invoice is for a laptop that was purchased on 12/12/2020. The invoice is for a laptop that was purchased on 12/12/2020. The invoice is for a laptop that was purchased on 12/12/2020. The invoice is for a laptop that was purchased on 12/12/2020. The invoice is for a laptop that was purchased on 12/12/2020. The invoice is for a laptop that was purchased on 12/12/2020. The invoice is for a laptop that was purchased on 12/12/2020."
+input_prompt="The invoice is for a laptop that was purchased on 12/12/2020."
 
 #if submit is clicked 
 if submit:
