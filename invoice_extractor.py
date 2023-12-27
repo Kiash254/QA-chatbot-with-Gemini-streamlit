@@ -18,7 +18,20 @@ model=genai.GenerativeModel('gemini-pro-vision')
 def  get_gemini_response(input,image,prompt):
     resesponse=model.generate_content([input,image[0],prompt])
     return resesponse.text
-
+def input_image_details(upload_file):
+    if upload_file is not None:
+        #read the file into bytes
+        bytes_data=upload_file.read()
+        
+        image_parts=[
+            {
+                "mime_type":upload_file.type,
+                "data":bytes_data,
+            }
+        ]
+        return image_parts
+    else:
+        raise FileNotFoundError("File not found")
 #streamlit set page config
 st.set_page_config(page_title="MultiLanguage Invoice Extractor",page_icon="🤖",layout="centered",initial_sidebar_state="auto")
 
@@ -39,7 +52,9 @@ submit=st.button("Tell me about the invoice")
 
 input_prompt="This is an invoice for a purchase of a laptop. The invoice is for a laptop that was purchased on 12/12/2020. The invoice is for a laptop that was purchased on 12/12/2020. The invoice is for a laptop that was purchased on 12/12/2020. The invoice is for a laptop that was purchased on 12/12/2020. The invoice is for a laptop that was purchased on 12/12/2020. The invoice is for a laptop that was purchased on 12/12/2020. The invoice is for a laptop that was purchased on 12/12/2020. The invoice is for a laptop that was purchased on 12/12/2020. The invoice is for a laptop that was purchased on 12/12/2020."
 
+#if submit is clicked 
 if submit:
-    response=get_gemini_response(input,[image],input_prompt)
+    image_data=input_image_details(upload_file)
+    response=get_gemini_response(input,image_data,input_prompt)
     st.subheader("The Response is:")
     st.write(response)
