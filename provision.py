@@ -1,14 +1,17 @@
 import streamlit as st
 from pathlib import Path
 import google.generativeai as genai
-
+from dotenv import load_dotenv
+load_dotenv()
+import os
 def main():
-    st.title('Image Description Generator')
+    st.title('GEMINI PRO VISION AI')
 
     st.sidebar.header('Gemini Pro Vision AI')
-    st.sidebar.write('Hello, please upload an image and the model will generate a description of the image.')
+    st.sidebar.write('please upload an image. Gemini pro Vision will generate a description of the image.')
 
-    genai.configure(api_key="AIzaSyDMJUY5I2f849g51nRE20jde8jE-yOBZ2w")
+   #use configure to set the api key
+    genai.configure(api_key=os.getenv("Google_api_key"))
 
     # Set up the model
     generation_config = {
