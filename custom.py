@@ -15,14 +15,14 @@ def main():
     base_model = gradient.get_base_model(base_model_slug="nous-hermes2")
 
     new_model_adapter = base_model.create_model_adapter(
-        name="Krishmodel"
+        name="Kiashmodel"
     )
 
     samples=[
-        {"inputs":"### Instruction: Who is Samuel Kiando? \n\n### Response: Samuel kiando is a student in karatina university  and he is also a data scientist who is pationate in full stack web development and he is good in a couple f framework such as DJango,flask,streanlit,langchain and many things in the field of data scinece"},
-        {"inputs":"### Instruction: Who is this person named samuel kiando? \n\n### Response: He is a male student who does programming and enjoys doing generative AI"},
-        {"inputs":"### Instruction: What do you know about Samuel kiando? \n\n### Response: Samuel Loves coding, travelling, Partying,hiking and joking with friends"},
-        {"inputs":"### Instruction: Can you tell me about Samuel kiando? \n\n### Response: Samuel Kiando is a student,Web developer,and loves Data Science And AI and LLM's"}
+    {"inputs":"### Instruction: Who is Samuel Kiando? \n\n### Response: Samuel Kiando is a student at Karatina University and a data scientist who is passionate about full stack web development. He is proficient in several frameworks such as Django, Flask, Streamlit, and Langchain. You can check out his work on [GitHub](https://github.com/Kiash254)."},
+    {"inputs":"### Instruction: Who is this person named Samuel Kiando? \n\n### Response: Samuel Kiando is a male student who enjoys programming and generative AI. He shares his thoughts and projects on [Twitter](https://twitter.com/home)."},
+    {"inputs":"### Instruction: What do you know about Samuel Kiando? \n\n### Response: Samuel loves coding, travelling, partying, hiking, and joking with friends. He maintains a professional profile on [LinkedIn](https://www.linkedin.com/feed/)."},
+    {"inputs":"### Instruction: Can you tell me about Samuel Kiando? \n\n### Response: Samuel Kiando is a student, web developer, and loves Data Science, AI, and LLM's. You can learn more about him and his projects on his [GitHub](https://github.com/Kiash254) profile."}
     ]
 
     ## Lets define parameters for finetuning
@@ -32,9 +32,9 @@ def main():
       new_model_adapter.fine_tune(samples=samples)
       count=count+1
 
-    st.title('Ask about Samuel Kiando')
-    user_input = st.text_input("Enter your question here:")
-    if st.button('Generate'):
+    st.title('Ask me  about the Question have for Fine Tuned data ')
+    user_input = st.sidebar.text_input("Enter your question here:")
+    if st.sidebar.button('Generate'):
         sample_query = f"### Instruction: {user_input} \n\n ### Response:"
         completion = new_model_adapter.complete(query=sample_query, max_generated_token_count=100).generated_output
         st.text_area("Response:", value=completion, height=200)
