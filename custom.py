@@ -15,7 +15,7 @@ def main():
     base_model = gradient.get_base_model(base_model_slug="nous-hermes2")
 
     new_model_adapter = base_model.create_model_adapter(
-        name="Kiashmodel"
+        name="Krishmodel"
     )
 
     samples=[
@@ -33,8 +33,8 @@ def main():
       count=count+1
 
     st.title('Ask me  about the Question have for Fine Tuned data ')
-    user_input = st.sidebar.text_input("Enter your question here:")
-    if st.sidebar.button('Generate'):
+    user_input = st.text_input("Enter your question here:")
+    if st.button('Generate'):
         sample_query = f"### Instruction: {user_input} \n\n ### Response:"
         completion = new_model_adapter.complete(query=sample_query, max_generated_token_count=100).generated_output
         st.text_area("Response:", value=completion, height=200)
