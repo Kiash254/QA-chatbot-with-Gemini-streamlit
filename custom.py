@@ -19,12 +19,11 @@ def main():
     )
 
     samples=[
-    {"inputs":"### Instruction: Who is Samuel Kiando? \n\n### Response: Samuel Kiando is a student at Karatina University and a data scientist who is passionate about full stack web development. He is proficient in several frameworks such as Django, Flask, Streamlit, and Langchain. You can check out his work on [GitHub](https://github.com/Kiash254)."},
-    {"inputs":"### Instruction: Who is this person named Samuel Kiando? \n\n### Response: Samuel Kiando is a male student who enjoys programming and generative AI. He shares his thoughts and projects on [Twitter](https://twitter.com/home)."},
-    {"inputs":"### Instruction: What do you know about Samuel Kiando? \n\n### Response: Samuel loves coding, travelling, partying, hiking, and joking with friends. He maintains a professional profile on [LinkedIn](https://www.linkedin.com/feed/)."},
-    {"inputs":"### Instruction: Can you tell me about Samuel Kiando? \n\n### Response: Samuel Kiando is a student, web developer, and loves Data Science, AI, and LLM's. You can learn more about him and his projects on his [GitHub](https://github.com/Kiash254) profile."}
+        {"inputs":"### Instruction: Who is Eugene Muasya? \n\n### Response: Eugene Muasya is a student at Karatina University, an amateur full stack developer, and a data analyst using blockchains. He also enjoys playing darts as an indoor activity. You can check out his work on [GitHub](https://github.com/YourGitHubProfile)."},
+        {"inputs":"### Instruction: Who is this person named Eugene Muasya? \n\n### Response: Eugene Muasya is a male student who enjoys programming and data analysis using blockchains. He shares his thoughts and projects on [Twitter](https://twitter.com/home)."},
+        {"inputs":"### Instruction: What do you know about Eugene Muasya? \n\n### Response: Eugene loves coding, data analysis, and playing darts. He maintains a professional profile on [LinkedIn](https://www.linkedin.com/feed/)."},
+        {"inputs":"### Instruction: Can you tell me about Eugene Muasya? \n\n### Response: Eugene Muasya is a student, amateur full stack developer, and loves data analysis using blockchains. You can learn more about him and his projects on his [GitHub](https://github.com/724502) profile."}
     ]
-
     ## Lets define parameters for finetuning
     num_epochs=3
     count=0
